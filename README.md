@@ -2,7 +2,7 @@
 Data visualization using the Matplotlib
 
 ## To-Do list:
-- [ ] Graphs examples.
+- [X] Graphs examples.
 - [ ] Choice of types of graphs.
 - [ ] Optional parameters (legends, labels, annotations).
 - [ ] Working with I/O files.
