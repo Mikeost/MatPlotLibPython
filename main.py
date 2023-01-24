@@ -1,7 +1,7 @@
 import cli
 
 def run():
-    cli.printLogo()
+    cli.print_logo()
     cli.menu()
 
 if __name__ == '__main__':
