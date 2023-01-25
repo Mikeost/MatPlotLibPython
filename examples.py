@@ -1,4 +1,5 @@
 import os
+import cli
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -194,7 +195,7 @@ def bar_3d_graph():
 def type_of_graph():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print('\n' + '*' * 50)
+        print(cli.bcolors.OKCYAN + '\n' + '*' * 50 + cli.bcolors.ENDC)
         print('\t\t<--Приклади графіків-->\n')
         print('1. Простий лінійний графік')
         print('2. Два лінійних графіка (одна координатна площина)')
@@ -209,12 +210,12 @@ def type_of_graph():
         
         while True:
             try:
-                print('Оберіть номер варіанту:', end = ' ')
+                print('Оберіть дію [0-9]:', end = ' ')
                 key = int(input())
                 break;
             except:
-                print('Введіть числове значення!')
-        print('*' * 50)
+                print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
+        print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
         match key:
             case 0:

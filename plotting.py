@@ -21,7 +21,7 @@ def get_console_data():
             count = int(input())
             break
         except:
-            print('Введіть числове значення!')
+            print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
     
     if count <= 1:
         return
@@ -37,7 +37,7 @@ def get_console_data():
                 xList.append(x)
                 break
             except:
-                print('Введіть числове значення!')
+                print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
 
         while True:
             try:
@@ -46,18 +46,18 @@ def get_console_data():
                 yList.append(y)
                 break
             except:
-                print('Введіть числове значення!')
+                print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
 
     print(xList)
     print(yList)
-    print('*' * 50)
+    print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
     plt.plot(xList, yList)
     plt.grid()
     plt.show()
 
 def get_file_data():
-    print('\nФайл повинен мати таку структуру:\n',
+    print(cli.bcolors.OKGREEN + '\nФайл повинен мати таку структуру:\n',
           'x0 y0\n',
           'x1 y1\n',
           'xn-1 yn-1\n',
@@ -66,7 +66,7 @@ def get_file_data():
           '1 1\n',
           '2 4\n',
           '3 2\n',
-          '4 3\n')
+          '4 3\n' + cli.bcolors.ENDC)
 
     while True:
         try:
@@ -84,7 +84,7 @@ def get_file_data():
             print(xList)
             print(yList)
 
-            print('*' * 50)
+            print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
             plt.plot(xList, yList)
             plt.grid()
@@ -93,13 +93,13 @@ def get_file_data():
             return
 
         except IOError:
-            print('Невірна назва файлу!')
+            print(cli.bcolors.WARNING + 'Невірна назва файлу!' + cli.bcolors.ENDC)
 
 
 def simple_graph():
     while True:
         cli.clear_screen()
-        print('\n' + '*' * 50)
+        print(cli.bcolors.OKCYAN + '\n' + '*' * 50 + cli.bcolors.ENDC)
         print('\t\t<--Простий графік по точкам-->\n')
         print('Метод занесення данних:')
         print('1. Консоль')
@@ -112,8 +112,8 @@ def simple_graph():
                 key = int(input())
                 break;
             except:
-                print('Введіть числове значення!')
-        print('*' * 50)
+                print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
+        print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
         match key:
             case 0:
