@@ -1,6 +1,8 @@
 import examples
 import os
 
+import plotting
+
 logo = ['    __  ___      __  ____  __      __  __    _ __',
         '   /  |/  /___ _/ /_/ __ \/ /___  / /_/ /   (_) /',
         '  / /|_/ / __ `/ __/ /_/ / / __ \/ __/ /   / / __ \\',
@@ -16,7 +18,7 @@ def menu():
     while True:
         print('\n' + '*' * 50)
         print('\t\t<--Головне меню-->\n')
-        print('1. Простий графік (!в розробці!)')
+        print('1. Простий графік по точкам')
         print('2. Сферичний графік (!в розробці!)')
         print('3. Приклади графіків')
         print('0. Вийти із програми')
@@ -32,6 +34,8 @@ def menu():
         match key:
             case 0:
                 break
+            case 1:
+                plotting.simple_graph()
             case 3:
                 examples.type_of_graph()
 
