@@ -1,3 +1,7 @@
+# Ignore
 __pycache__
 .idea/
 *.txt
+
+# Allow
+requirements.txt
