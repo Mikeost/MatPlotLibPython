@@ -13,6 +13,9 @@ def print_logo():
     for i in range(5):
         print(logo[i])
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def menu():
     key = 0
     while True:
@@ -22,13 +25,14 @@ def menu():
         print('2. Сферичний графік (!в розробці!)')
         print('3. Приклади графіків')
         print('0. Вийти із програми')
-        print('\nОберіть номер варіанту:', end = ' ')
+        
         while True:
             try:
+                print('\nОберіть дію [0-3]:', end = ' ')
                 key = int(input())
                 break;
             except:
-                print('Введіть числове значення!!!')
+                print('Введіть числове значення [0-3]!')
         print('*' * 50)
 
         match key:
@@ -40,4 +44,4 @@ def menu():
                 examples.type_of_graph()
 
 
-        os.system('cls' if os.name == 'nt' else 'clear')
+        clear_screen()

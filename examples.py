@@ -205,14 +205,15 @@ def type_of_graph():
         print('7. Графік rand послідовностей (Numpy)')
         print('8. Анімація графіка')
         print('9. 3D Гістограма')
-        print('0. Назад')
-        print('\nОберіть номер варіанту:', end = ' ')
+        print('0. Назад\n')
+        
         while True:
             try:
+                print('Оберіть номер варіанту:', end = ' ')
                 key = int(input())
                 break;
             except:
-                print('Введіть числове значення!!!')
+                print('Введіть числове значення!')
         print('*' * 50)
 
         match key:

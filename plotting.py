@@ -1,4 +1,5 @@
 import os
+import cli
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -14,35 +15,49 @@ import fileinput
 matplotlib.use("TkAgg")
 
 def get_console_data():
-    print('Введіть кількість точок:', end = ' ')
     while True:
         try:
+            print('Введіть кількість точок:', end = ' ')
             count = int(input())
-            break;
+            break
         except:
-            print('Введіть числове значення!!!')
+            print('Введіть числове значення!')
     
+    if count <= 1:
+        return
+
     xList = []
     yList = []
 
     for i in range(count):
-        print('X' + str(i) + ':', end = ' ')
-        x = int(input())
-        xList.append(x)
+        while True:
+            try:
+                print('X' + str(i) + ':', end = ' ')
+                x = float(input())
+                xList.append(x)
+                break
+            except:
+                print('Введіть числове значення!')
 
-        print('Y' + str(i) + ':', end = ' ')
-        y = int(input())
-        yList.append(y)
+        while True:
+            try:
+                print('Y' + str(i) + ':', end = ' ')
+                y = float(input())
+                yList.append(y)
+                break
+            except:
+                print('Введіть числове значення!')
 
     print(xList)
     print(yList)
+    print('*' * 50)
 
     plt.plot(xList, yList)
     plt.grid()
     plt.show()
 
 def get_file_data():
-    print('Файл повинен мати таку структуру:\n',
+    print('\nФайл повинен мати таку структуру:\n',
           'x0 y0\n',
           'x1 y1\n',
           'xn-1 yn-1\n',
@@ -63,11 +78,13 @@ def get_file_data():
 
             for line in file:
                 line = line.split(' ')
-                xList.append(int(line[0]))
-                yList.append(int(line[1]))
+                xList.append(float(line[0]))
+                yList.append(float(line[1]))
 
             print(xList)
             print(yList)
+
+            print('*' * 50)
 
             plt.plot(xList, yList)
             plt.grid()
@@ -76,24 +93,26 @@ def get_file_data():
             return
 
         except IOError:
-            print('Невірна назва файлу')
+            print('Невірна назва файлу!')
 
 
 def simple_graph():
     while True:
+        cli.clear_screen()
         print('\n' + '*' * 50)
         print('\t\t<--Простий графік по точкам-->\n')
         print('Метод занесення данних:')
         print('1. Консоль')
         print('2. Файл')
         print('0. Назад')
-        print('\nОберіть номер варіанту:', end = ' ')
+
         while True:
             try:
+                print('\nОберіть дію [0-2]:', end = ' ')
                 key = int(input())
                 break;
             except:
-                print('Введіть числове значення!!!')
+                print('Введіть числове значення!')
         print('*' * 50)
 
         match key:
