@@ -15,3 +15,5 @@ pip3 install -r requirements.txt
 - [ ] Graph animation.
 - [ ] Color (colormap, bitmap, rgb, cmyk).
 - [ ] GUI (tkinter or pyside), maybe...
+
+#### [Video changelog](https://youtube.com/playlist?list=PLA3FKi-vnDntW9FYGiK1foO5QWayBcBeK)
