@@ -4,4 +4,4 @@ __pycache__
 *.txt
 
 # Allow
-requirements.txt
+!requirements.txt
