@@ -14,6 +14,68 @@ import fileinput
 
 matplotlib.use("TkAgg")
 
+def marker_graph():
+    print(cli.bcolors.OKCYAN + '\n' + '*' * 50 + cli.bcolors.ENDC)
+    print('\t\t<--Маркери графіка-->\n')
+    print('Доступні маркери:')
+    print('1. Точка (•)')
+    print('2. Піксель (·)')
+    print('3. Коло (●)')
+    print('4. Трикутник вниз (▼)')
+    print('5. Трикутник вгору (▲)')
+    print('6. Трикутник вліво (◀)')
+    print('7. Трикутник вправо (▶)')
+    print('8. Квадрат (◼)')
+    print('9. Шестикутник 1 (⬢ )')
+    print('10. Шестикутник 2 (⬣ )')
+    print('11. Плюс (✚)')
+    print('12. Х (✖)')
+    print('13. Зірка (★)')
+    print('14. Ромб (♦)')
+    print('0. Без маркерів\n')
+
+    while True:
+        try:
+            print('Оберіть номер маркеру [0-14]:', end = ' ')
+            key = int(input())
+            break
+        except:
+            print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
+
+    match key:
+        case 0:
+            return 'None'
+        case 1:
+            return '.'
+        case 2:
+            return ','
+        case 3:
+            return 'o'
+        case 4:
+            return 'v'
+        case 5:
+            return '^'
+        case 6:
+            return '<'
+        case 7:
+            return '>'
+        case 8:
+            return 's'
+        case 9:
+            return 'h'
+        case 10:
+            return 'H'
+        case 11:
+            return 'P'
+        case 12:
+            return 'X'
+        case 13:
+            return '*'
+        case 14:
+            return 'd'
+        case _:
+            return 'None'
+
 def linestyle_graph():
     print(cli.bcolors.OKCYAN + '\n' + '*' * 50 + cli.bcolors.ENDC)
     print('\t\t<--Стиль ліній-->\n')
@@ -119,10 +181,11 @@ def get_console_data():
     print(yList)
     print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
-    colorG = color_graph()
+    color_G = color_graph()
     linestyle_g = linestyle_graph()
+    marker_g = marker_graph()
 
-    plt.plot(xList, yList, colorG + linestyle_g)
+    plt.plot(xList, yList, color_G + linestyle_g, marker = marker_g)
     plt.grid()
     plt.show()
 
@@ -156,10 +219,11 @@ def get_file_data():
 
             print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
-            colorG = color_graph()
+            color_G = color_graph()
             linestyle_g = linestyle_graph()
+            marker_g = marker_graph()
 
-            plt.plot(xList, yList, colorG + linestyle_g)
+            plt.plot(xList, yList, color_G + linestyle_g, marker = marker_g)
             plt.grid()
             plt.show()
 

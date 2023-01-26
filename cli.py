@@ -22,7 +22,7 @@ logo = ['    __  ___      __  ____  __      __  __    _ __',
 
 def print_logo():
     for i in range(5):
-        print(bcolors.OKBLUE + logo[i] + bcolors.ENDC)
+        print(bcolors.HEADER + logo[i] + bcolors.ENDC)
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
