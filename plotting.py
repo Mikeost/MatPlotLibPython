@@ -14,6 +14,73 @@ import fileinput
 
 matplotlib.use("TkAgg")
 
+def linestyle_graph():
+    print(cli.bcolors.OKCYAN + '\n' + '*' * 50 + cli.bcolors.ENDC)
+    print('\t\t<--Стиль ліній-->\n')
+    print('Доступні стилі:')
+    print('1. Пунктирна лінія')
+    print('2. Довга пунктирна лінія')
+    print('3. Штрихпунктирна лінія')
+    print('0. Суцільна лінія(за замовчуванням)\n')
+
+    while True:
+        try:
+            print('Оберіть номер стилю [0-3]:', end = ' ')
+            key = int(input())
+            break
+        except:
+            print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
+
+    match key:
+        case 0:
+            return '-'
+        case 1:
+            return ':'
+        case 2:
+            return '--'
+        case 3:
+            return '-.'
+        case _:
+            return '-'
+
+
+def color_graph():
+    print('\t\t<--Колір графіка-->\n')
+    print('Доступні кольори:')
+    print('1. Синій')
+    print('2. Зелений')
+    print('3. Червоний')
+    print('4. Блакитний')
+    print('5. Пурпуровий')
+    print('6. Жовтий')
+    print('0. Чорний(за замовчуванням)\n')
+
+    while True:
+        try:
+            print('Оберіть номер кольору [0-6]:', end = ' ')
+            key = int(input())
+            break
+        except:
+            print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
+
+    match key:
+        case 0:
+            return 'k'
+        case 1:
+            return 'b'
+        case 2:
+            return 'g'
+        case 3:
+            return 'r'
+        case 4:
+            return 'c'
+        case 5:
+            return 'm'
+        case 6:
+            return 'y'
+        case _:
+            return 'k'
+
 def get_console_data():
     while True:
         try:
@@ -52,7 +119,10 @@ def get_console_data():
     print(yList)
     print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
-    plt.plot(xList, yList)
+    colorG = color_graph()
+    linestyle_g = linestyle_graph()
+
+    plt.plot(xList, yList, colorG + linestyle_g)
     plt.grid()
     plt.show()
 
@@ -86,7 +156,10 @@ def get_file_data():
 
             print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
 
-            plt.plot(xList, yList)
+            colorG = color_graph()
+            linestyle_g = linestyle_graph()
+
+            plt.plot(xList, yList, colorG + linestyle_g)
             plt.grid()
             plt.show()
 
