@@ -1,6 +1,3 @@
-import os
-import cli
-
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -191,50 +188,3 @@ def bar_3d_graph():
 
     fig.canvas.manager.set_window_title('3D Графік')
     plt.show()
-
-def type_of_graph():
-    while True:
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print(cli.bcolors.OKCYAN + '\n' + '*' * 50 + cli.bcolors.ENDC)
-        print('\t\t<--Приклади графіків-->\n')
-        print('1. Простий лінійний графік')
-        print('2. Два лінійних графіка (одна координатна площина)')
-        print('3. Два лінійних графіка на окремих коорд. площинах')
-        print('4. Гістограма')
-        print('5. Кругова діаграма')
-        print('6. Кругова діаграма з написами')
-        print('7. Графік rand послідовностей (Numpy)')
-        print('8. Анімація графіка')
-        print('9. 3D Гістограма')
-        print('0. Назад\n')
-        
-        while True:
-            try:
-                print('Оберіть дію [0-9]:', end = ' ')
-                key = int(input())
-                break;
-            except:
-                print(cli.bcolors.WARNING + 'Введіть числове значення!' + cli.bcolors.ENDC)
-        print(cli.bcolors.OKCYAN + '*' * 50 + cli.bcolors.ENDC)
-
-        match key:
-            case 0:
-                break
-            case 1:
-                simple_graph()
-            case 2:
-                two_graphs()
-            case 3:
-                two_figure()
-            case 4:
-                bar_graph()
-            case 5:
-                basic_pie_graph()
-            case 6:
-                pie_lables_graph()
-            case 7:
-                numpy_random_graph()
-            case 8:
-                animation_graph()
-            case 9:
-                bar_3d_graph()

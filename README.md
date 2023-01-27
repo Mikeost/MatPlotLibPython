@@ -11,9 +11,9 @@ pip3 install -r requirements.txt
 - [X] Graphs examples.
 - [ ] Choice of types of graphs.
 - [ ] Optional parameters (legends, labels, annotations).
-- [ ] Working with I/O files.
+- [X] Working with I/O files.
 - [ ] Graph animation.
 - [ ] Color (colormap, bitmap, rgb, cmyk).
-- [ ] GUI (tkinter or pyside), maybe...
+- [X] GUI (tkinter or pyside), maybe...
 
 #### [Video changelog](https://youtube.com/playlist?list=PLA3FKi-vnDntW9FYGiK1foO5QWayBcBeK)
