@@ -6,20 +6,33 @@ import plotting
 
 win = tk.Tk()
 
+def window_center(_win, width, height):
+    screen_width = _win.winfo_screenwidth()
+    screen_height = _win.winfo_screenheight()
+
+    x_coordinate = int((screen_width / 2) - (width / 2))
+    y_coordinate = int((screen_height / 2) - (height / 2))
+
+    _win.geometry('{}x{}+{}+{}'.format(width, height, x_coordinate, y_coordinate))
+
+
 def win_init():
     photo = tk.PhotoImage(file = 'media/logo.png')
     win.iconphoto(False, photo)
     #win.config(bg = 'white')
     win.title('MatPlotLibPython')
 
-    win.geometry('600x500')
+    window_width = 600
+    window_height = 500
+
+    win.resizable(False, False)
+
+    window_center(win, window_width, window_height)
 
     # Labels
     title_label = tk.Label(win, text = 'MatPlotLibPython',
-                       #bg = 'white', fg = 'black',
-                       font = ('Arial', 30, 'bold'),
-                       pady = 20,
-                       )
+                           font = ('Arial', 30, 'bold'),
+                           pady = 20)
 
     title_label.pack()
 
@@ -88,11 +101,14 @@ def simple_graph_page():
     simple_graph_win = tk.Toplevel(win)
     photo = tk.PhotoImage(file = 'media/logo.png')
     simple_graph_win.iconphoto(False, photo)
-    #win.config(bg = 'white')
     simple_graph_win.title('Простий графік по точкам')
 
-    simple_graph_win.geometry('500x775')
+    window_width = 500
+    window_height = 775
+
     simple_graph_win.resizable(False, False)
+
+    window_center(simple_graph_win, window_width, window_height)
 
     # Labels
     title_label = tk.Label(simple_graph_win, text = 'Простий графік по точкам',
@@ -211,18 +227,19 @@ def examples_page():
     examples_win = tk.Toplevel(win)
     photo = tk.PhotoImage(file = 'media/logo.png')
     examples_win.iconphoto(False, photo)
-    #win.config(bg = 'white')
     examples_win.title('Приклади графіків')
 
-    examples_win.geometry('600x650')
+    window_width = 600
+    window_height = 650
+
     examples_win.resizable(False, False)
+
+    window_center(examples_win, window_width, window_height)
 
     # Labels
     title_label = tk.Label(examples_win, text = 'Приклади графіків',
-                       #bg = 'white', fg = 'black',
-                       font = ('Arial', 30, 'bold'),
-                       pady = 20,
-                       ).pack()
+                           font = ('Arial', 30, 'bold'),
+                           pady = 20).pack()
 
     # Buttons 
     simple_graph_button = tk.Button(examples_win, text = 'Простий лінійний графік',
