@@ -97,7 +97,4 @@ def simple_plotting(data, color_G, linestyle_g, marker_g):
     plt.plot(xList, yList, color = color_G, linestyle = linestyle_g, marker = marker_g)
     plt.grid()
 
-    thismanager = plt.get_current_fig_manager()
-    thismanager.window.wm_geometry("+500+0")
-
     plt.show()

@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 import examples
 
@@ -41,10 +42,10 @@ def win_init():
                                     command = simple_graph_page, width = 20,
                                     height = 2,)
 
-    bare_graph_button = tk.Button(win, text = 'Гістограма(в розробці)',
-                                  #command = , 
-                                  width = 20,
-                                  height = 2,)
+    equation_graph_button = tk.Button(win, text = 'Графік за рівнянням',
+                                      #command = equation_graph_page, 
+                                      width = 20,
+                                      height = 2,)
 
     examples_button = tk.Button(win, text = 'Приклади графіків',
                                 command = examples_page, width = 20,
@@ -55,7 +56,7 @@ def win_init():
                             height = 2,)
 
     simple_graph_button.pack(pady = 15)
-    bare_graph_button.pack(pady = 15)
+    equation_graph_button.pack(pady = 15)
     examples_button.pack(pady = 15)
     exit_button.pack(pady = 30)
 
@@ -88,12 +89,12 @@ def simple_graph_page():
             data = coord_lists.get('1.0', 'end-1c')
             if not data:
                 return
-            plotting.simple_plotting(data, color_var.get(), linestyle_var.get(), marker_var.get())
+            plotting.simple_plotting(data, colors_combobox.current(), linestyles_combobox.current(), markers_combobox.current())
         elif var == 1:
             data = browse_files()
             if not data:
                 return
-            plotting.simple_plotting(data, color_var.get(), linestyle_var.get(), marker_var.get())
+            plotting.simple_plotting(data, colors_combobox.current(), linestyles_combobox.current(), markers_combobox.current())
         else:
             tk.messagebox.showinfo(title = 'Помилка!', message = 'Оберіть варіант введення!')
 
@@ -133,90 +134,47 @@ def simple_graph_page():
 
     # Color
     graph_color_label = tk.Label(simple_graph_win, text = 'Оберіть колір графіку:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 4,
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 3,
                                  columnspan = 7)
 
-    color_var = tk.IntVar()
+    colors = ('Чорний', 'Синій', 'Зелений', 'Червоний', 'Блакитний', 'Пурпуровий', 'Жовтий')
 
-    tk.Radiobutton(simple_graph_win, text = 'Чорний', variable = color_var, 
-                                 value = 0).grid(column = 1, row = 5)
-    tk.Radiobutton(simple_graph_win, text = 'Синій', variable = color_var, 
-                                 value = 1).grid(column = 2, row = 5, columnspan = 3)
-    tk.Radiobutton(simple_graph_win, text = 'Зелений', variable = color_var, 
-                                 value = 2).grid(column = 5, row = 5)
-    tk.Radiobutton(simple_graph_win, text = 'Червоний', variable = color_var, 
-                                 value = 3).grid(column = 1, row = 6)
-    tk.Radiobutton(simple_graph_win, text = 'Блакитний', variable = color_var, 
-                                 value = 4).grid(column = 2, row = 6, columnspan = 3)
-    tk.Radiobutton(simple_graph_win, text = 'Пурпуровий', variable = color_var, 
-                                 value = 5).grid(column = 5, row = 6)
-    tk.Radiobutton(simple_graph_win, text = 'Жовтий', variable = color_var, 
-                                 value = 6).grid(column = 2, row = 7, columnspan = 3)
+    colors_combobox = ttk.Combobox(simple_graph_win, values = colors)
+    colors_combobox.current(0)
+    colors_combobox.grid(column = 0, row = 4, columnspan = 7)
 
     # Linestyle
     linestyle_label = tk.Label(simple_graph_win, text = 'Оберіть тип лінії:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 8,
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 5,
                                  columnspan = 7)
 
-    linestyle_var = tk.IntVar()
+    linestyles = ('Суцільна лінія(за замовчуванням)', 'Пунктирна лінія', 'Довга пунктирна лінія', 'Штрихпунктирна лінія')
 
-    tk.Radiobutton(simple_graph_win, text = 'Суцільна лінія(за замовчуванням)', variable = linestyle_var, 
-                                 value = 0).grid(column = 0, row = 9, columnspan = 7)
-    tk.Radiobutton(simple_graph_win, text = 'Пунктирна лінія', variable = linestyle_var, 
-                                 value = 1).grid(column = 0, row = 10, columnspan = 7)
-    tk.Radiobutton(simple_graph_win, text = 'Довга пунктирна лінія', variable = linestyle_var, 
-                                 value = 2).grid(column = 0, row = 11, columnspan = 7)
-    tk.Radiobutton(simple_graph_win, text = 'Штрихпунктирна лінія', variable = linestyle_var, 
-                                 value = 3).grid(column = 0, row = 12, columnspan = 7)
+    linestyles_combobox = ttk.Combobox(simple_graph_win, values = linestyles)
+    linestyles_combobox.current(0)
+    linestyles_combobox.grid(column = 0, row = 6, columnspan = 7)
 
     # Marker
     marker_label = tk.Label(simple_graph_win, text = 'Оберіть тип маркерів:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 13,
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 7,
                                  columnspan = 7)
 
-    marker_var = tk.IntVar()
+    markers = ('Без маркерів', '•', '·', '●', '▼', '▲', '◀', '▶', '◼', '⬢', '⬣', '✚', '✖', '★', '♦')
 
-    tk.Radiobutton(simple_graph_win, text = 'Без маркерів', variable = marker_var, 
-                                 value = 0).grid(column = 1, row = 14)
-    tk.Radiobutton(simple_graph_win, text = '•', variable = marker_var, 
-                                 value = 1).grid(column = 2, row = 14)
-    tk.Radiobutton(simple_graph_win, text = '·', variable = marker_var, 
-                                 value = 2).grid(column = 3, row = 14)
-    tk.Radiobutton(simple_graph_win, text = '●', variable = marker_var, 
-                                 value = 3).grid(column = 4, row = 14)
-    tk.Radiobutton(simple_graph_win, text = '▼', variable = marker_var, 
-                                 value = 4).grid(column = 5, row = 14)
-    tk.Radiobutton(simple_graph_win, text = '▲', variable = marker_var, 
-                                 value = 5).grid(column = 1, row = 15)
-    tk.Radiobutton(simple_graph_win, text = '◀', variable = marker_var, 
-                                 value = 6).grid(column = 2, row = 15)
-    tk.Radiobutton(simple_graph_win, text = '▶', variable = marker_var, 
-                                 value = 7).grid(column = 3, row = 15)
-    tk.Radiobutton(simple_graph_win, text = '◼', variable = marker_var, 
-                                 value = 8).grid(column = 4, row = 15)
-    tk.Radiobutton(simple_graph_win, text = '⬢', variable = marker_var, 
-                                 value = 9).grid(column = 5, row = 15)
-    tk.Radiobutton(simple_graph_win, text = '⬣', variable = marker_var, 
-                                 value = 10).grid(column = 1, row = 16)
-    tk.Radiobutton(simple_graph_win, text = '✚', variable = marker_var, 
-                                 value = 11).grid(column = 2, row = 16)
-    tk.Radiobutton(simple_graph_win, text = '✖', variable = marker_var, 
-                                 value = 12).grid(column = 3, row = 16)
-    tk.Radiobutton(simple_graph_win, text = '★', variable = marker_var, 
-                                 value = 13).grid(column = 4, row = 16)
-    tk.Radiobutton(simple_graph_win, text = '♦', variable = marker_var, 
-                                 value = 14).grid(column = 5, row = 16)
-
+    markers_combobox = ttk.Combobox(simple_graph_win, values = markers)
+    markers_combobox.current(0)
+    markers_combobox.grid(column = 0, row = 8, columnspan = 7)
 
     # Buttons 
     plotting_button = tk.Button(simple_graph_win, text = 'Побудувати графік',
-                                command = select_var, width = 20,
-                                height = 2).grid(column = 0, row = 17, columnspan = 7, pady = (30, 10))
+                                command = select_var, 
+                                width = 20,
+                                height = 2).grid(column = 0, row = 9, columnspan = 7, pady = (30, 10))
 
 
     back_button = tk.Button(simple_graph_win, text = 'Назад',
                             command = close, width = 20,
-                            height = 2).grid(column = 0, row = 18, columnspan = 7)
+                            height = 2).grid(column = 0, row = 10, columnspan = 7)
 
 def examples_page():
 
