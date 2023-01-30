@@ -20,7 +20,6 @@ def window_center(_win, width, height):
 def win_init():
     photo = tk.PhotoImage(file = 'media/logo.png')
     win.iconphoto(False, photo)
-    #win.config(bg = 'white')
     win.title('MatPlotLibPython')
 
     window_width = 600
@@ -43,7 +42,7 @@ def win_init():
                                     height = 2,)
 
     equation_graph_button = tk.Button(win, text = 'Графік за рівнянням',
-                                      #command = equation_graph_page, 
+                                      command = equation_graph_page, 
                                       width = 20,
                                       height = 2,)
 
@@ -105,7 +104,7 @@ def simple_graph_page():
     simple_graph_win.title('Простий графік по точкам')
 
     window_width = 500
-    window_height = 775
+    window_height = 650
 
     simple_graph_win.resizable(False, False)
 
@@ -239,6 +238,97 @@ def examples_page():
     back_button = tk.Button(examples_win, text = 'Назад',
                             command = close, width = 40,
                             height = 2).pack(pady = 15)
+
+def equation_graph_page():
+
+    def close():
+        equation_graph_win.destroy()
+        equation_graph_win.update()
+
+    def plotting_graph():
+        plotting.equation_plotting(equation.get('1.0', 'end-1c'), range(int(x_left.get('1.0', 'end-1c')), int(x_right.get('1.0', 'end-1c')) + 1), 
+                                   colors_combobox.current(), linestyles_combobox.current(), markers_combobox.current())
+
+
+    equation_graph_win = tk.Toplevel(win)
+    photo = tk.PhotoImage(file = 'media/logo.png')
+    equation_graph_win.iconphoto(False, photo)
+    equation_graph_win.title('Графік за рівнянням')
+
+    window_width = 400
+    window_height = 600
+
+    equation_graph_win.resizable(False, False)
+
+    window_center(equation_graph_win, window_width, window_height)
+
+    title_label = tk.Label(equation_graph_win, text = 'Графік за рівнянням',
+                           font = ('Arial', 30, 'bold'),
+                           pady = 20, padx = 50
+                           ).grid(column = 0, row = 0, columnspan = 5, sticky = 'n')
+
+    y_label = tk.Label(equation_graph_win, text = 'y =',
+                       font = ('Arial', 15, 'normal'),
+                       pady = 10
+                       ).grid(column = 0, row = 1, columnspan = 1, sticky = 'e')
+
+    equation = tk.Text(equation_graph_win, width = 18, height = 1, padx = 0)
+    equation.grid(column = 2, row = 1, columnspan = 2, sticky = 'w')
+
+    x_label = tk.Label(equation_graph_win, text = 'Діапазон x:',
+                       font = ('Arial', 15, 'normal'),
+                       pady = 10
+                       ).grid(column = 0, row = 2, columnspan = 1, sticky = 'e')
+
+    x_left = tk.Text(equation_graph_win, width = 5, height = 1, padx = 0)
+    x_left.grid(column = 2, row = 2, columnspan = 1, sticky = 'w')
+
+    x_right = tk.Text(equation_graph_win, width = 5, height = 1, padx = 0)
+    x_right.grid(column = 3, row = 2, columnspan = 1, sticky = 'w')
+
+    # Color
+    graph_color_label = tk.Label(equation_graph_win, text = 'Оберіть колір графіку:', anchor = 'nw',
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 3,
+                                 columnspan = 5)
+
+    colors = ('Чорний', 'Синій', 'Зелений', 'Червоний', 'Блакитний', 'Пурпуровий', 'Жовтий')
+
+    colors_combobox = ttk.Combobox(equation_graph_win, values = colors)
+    colors_combobox.current(0)
+    colors_combobox.grid(column = 0, row = 4, columnspan = 5)
+
+    # Linestyle
+    linestyle_label = tk.Label(equation_graph_win, text = 'Оберіть тип лінії:', anchor = 'nw',
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 5,
+                                 columnspan = 5)
+
+    linestyles = ('Суцільна лінія(за замовчуванням)', 'Пунктирна лінія', 'Довга пунктирна лінія', 'Штрихпунктирна лінія')
+
+    linestyles_combobox = ttk.Combobox(equation_graph_win, values = linestyles)
+    linestyles_combobox.current(0)
+    linestyles_combobox.grid(column = 0, row = 6, columnspan = 5)
+
+    # Marker
+    marker_label = tk.Label(equation_graph_win, text = 'Оберіть тип маркерів:', anchor = 'nw',
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 7,
+                                 columnspan = 5)
+
+    markers = ('Без маркерів', '•', '·', '●', '▼', '▲', '◀', '▶', '◼', '⬢', '⬣', '✚', '✖', '★', '♦')
+
+    markers_combobox = ttk.Combobox(equation_graph_win, values = markers)
+    markers_combobox.current(0)
+    markers_combobox.grid(column = 0, row = 8, columnspan = 5)
+
+    # Buttons 
+    plotting_button = tk.Button(equation_graph_win, text = 'Побудувати графік',
+                                command = plotting_graph, 
+                                width = 20,
+                                height = 2).grid(column = 0, row = 9, columnspan = 5, pady = (30, 10))
+
+
+    back_button = tk.Button(equation_graph_win, text = 'Назад',
+                            command = close, width = 20,
+                            height = 2).grid(column = 0, row = 10, columnspan = 5)
 
 if __name__ == '__main__':
     win_init()

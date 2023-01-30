@@ -82,19 +82,36 @@ def color_graph(key):
 
 def simple_plotting(data, color_G, linestyle_g, marker_g):
     data = data.splitlines()
-    xList = []
-    yList = []
+    x_list = []
+    y_list = []
 
     for line in data:
         line = line.split(' ')
-        xList.append(float(line[0]))
-        yList.append(float(line[1]))
+        x_list.append(float(line[0]))
+        y_list.append(float(line[1]))
 
     color_G = color_graph(color_G)
     linestyle_g = linestyle_graph(linestyle_g)
     marker_g = marker_graph(marker_g)
 
-    plt.plot(xList, yList, color = color_G, linestyle = linestyle_g, marker = marker_g)
+    plt.plot(x_list, y_list, color = color_G, linestyle = linestyle_g, marker = marker_g)
+    plt.grid()
+
+    plt.show()
+
+def equation_plotting(equation, x_range, color_G, linestyle_g, marker_g):
+
+    for i in range(len(equation)):
+        if equation[i] == '^':
+            equation = equation[:i] + '**' + equation[i + 1:]
+    x = np.array(x_range)  
+    y = eval(equation)
+
+    color_G = color_graph(color_G)
+    linestyle_g = linestyle_graph(linestyle_g)
+    marker_g = marker_graph(marker_g)
+
+    plt.plot(x, y, color = color_G, linestyle = linestyle_g, marker = marker_g)
     plt.grid()
 
     plt.show()
