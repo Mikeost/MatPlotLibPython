@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+import numpy as np
+
 import examples
 
 import plotting
@@ -46,6 +48,11 @@ def win_init():
                                       width = 20,
                                       height = 2,)
 
+    fractal_graph_button = tk.Button(win, text = 'Фрактали',
+                                      command = fractal_graph_page, 
+                                      width = 20,
+                                      height = 2,)
+
     examples_button = tk.Button(win, text = 'Приклади графіків',
                                 command = examples_page, width = 20,
                                 height = 2,)
@@ -56,6 +63,7 @@ def win_init():
 
     simple_graph_button.pack(pady = 15)
     equation_graph_button.pack(pady = 15)
+    fractal_graph_button.pack(pady = 15)
     examples_button.pack(pady = 15)
     exit_button.pack(pady = 30)
 
@@ -112,16 +120,16 @@ def simple_graph_page():
 
     # Labels
     title_label = tk.Label(simple_graph_win, text = 'Простий графік по точкам',
-                       #bg = 'white', fg = 'black',
-                       font = ('Arial', 30, 'bold'),
-                       pady = 20, padx = 50
-                       ).grid(column = 0, row = 0, columnspan = 7, sticky = 'n')
+                           #bg = 'white', fg = 'black',
+                           font = ('Arial', 30, 'bold'),
+                           pady = 20, padx = 50
+                           ).grid(column = 0, row = 0, columnspan = 7, sticky = 'n')
 
     # Input
     input_var = tk.IntVar()
 
     tk.Radiobutton(simple_graph_win, text = 'Текстове введення', variable = input_var, 
-                                 value = 0, pady = 20).grid(column = 1, row = 1, columnspan = 2)
+                   value = 0, pady = 20).grid(column = 1, row = 1, columnspan = 2)
 
     coord_lists = tk.Text(simple_graph_win, width = 20, height = 4)
     coord_lists.grid(column = 1, row = 2, columnspan = 2)
@@ -129,7 +137,7 @@ def simple_graph_page():
 
     filename = None
     tk.Radiobutton(simple_graph_win, text = 'Введення із файлу', variable = input_var, 
-                                 value = 1, pady = 20).grid(column = 4, row = 1, columnspan = 2)
+                   value = 1, pady = 20).grid(column = 4, row = 1, columnspan = 2)
 
     # Color
     graph_color_label = tk.Label(simple_graph_win, text = 'Оберіть колір графіку:', anchor = 'nw',
@@ -144,8 +152,8 @@ def simple_graph_page():
 
     # Linestyle
     linestyle_label = tk.Label(simple_graph_win, text = 'Оберіть тип лінії:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 5,
-                                 columnspan = 7)
+                               font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 5,
+                               columnspan = 7)
 
     linestyles = ('Суцільна лінія(за замовчуванням)', 'Пунктирна лінія', 'Довга пунктирна лінія', 'Штрихпунктирна лінія')
 
@@ -155,8 +163,8 @@ def simple_graph_page():
 
     # Marker
     marker_label = tk.Label(simple_graph_win, text = 'Оберіть тип маркерів:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 7,
-                                 columnspan = 7)
+                            font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 7,
+                            columnspan = 7)
 
     markers = ('Без маркерів', '•', '·', '●', '▼', '▲', '◀', '▶', '◼', '⬢', '⬣', '✚', '✖', '★', '♦')
 
@@ -174,6 +182,57 @@ def simple_graph_page():
     back_button = tk.Button(simple_graph_win, text = 'Назад',
                             command = close, width = 20,
                             height = 2).grid(column = 0, row = 10, columnspan = 7)
+
+def fractal_graph_page():
+
+    def close():
+        fractal_win.destroy()
+        fractal_win.update()
+
+    def plotting_graph():
+        match type_of_fractal_combobox.current():
+            case 0:
+                plotting.barnsley_fern()
+            case 1:
+                plotting.dragon_curve()
+            case 2:
+                plotting.sierpinsky_triangle_construction()
+
+
+    fractal_win = tk.Toplevel(win)
+    photo = tk.PhotoImage(file = 'media/logo.png')
+    fractal_win.iconphoto(False, photo)
+    fractal_win.title('Фрактали')
+
+    window_width = 500
+    window_height = 350
+
+    fractal_win.resizable(False, False)
+
+    window_center(fractal_win, window_width, window_height)
+
+    # Labels
+    title_label = tk.Label(fractal_win, text = 'Фрактали',
+                           font = ('Arial', 30, 'bold'),
+                           pady = 20).pack()
+
+    type_of_fractal_title = tk.Label(fractal_win, text = 'Оберіть тип фракакталу:', anchor = 'nw',
+                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).pack()
+
+    types_of_fractal = ('Папороть Барнслі', 'Крива дракона', 'Трикутник Серпінського')
+
+    type_of_fractal_combobox = ttk.Combobox(fractal_win, values = types_of_fractal)
+    type_of_fractal_combobox.current(0)
+    type_of_fractal_combobox.pack()
+
+    plotting_button = tk.Button(fractal_win, text = 'Побудувати графік',
+                                command = plotting_graph, 
+                                width = 20,
+                                height = 2).pack(pady = 15)
+
+    back_button = tk.Button(fractal_win, text = 'Назад',
+                            command = close, width = 20,
+                            height = 2).pack(pady = 15)
 
 def examples_page():
 
@@ -216,24 +275,24 @@ def examples_page():
                                  height = 2).pack(pady = 5)
 
     basic_pie_graph_button = tk.Button(examples_win, text = 'Кругова діаграма',
-                                 command = examples.basic_pie_graph, width = 40,
-                                 height = 2).pack(pady = 5)
+                                       command = examples.basic_pie_graph, width = 40,
+                                       height = 2).pack(pady = 5)
 
     pie_lables_graph_button = tk.Button(examples_win, text = 'Кругова діаграма з написами',
-                                 command = examples.pie_lables_graph, width = 40,
-                                 height = 2).pack(pady = 5)
+                                        command = examples.pie_lables_graph, width = 40,
+                                        height = 2).pack(pady = 5)
 
     numpy_random_graph_button = tk.Button(examples_win, text = 'Графік rand послідовностей (Numpy)',
-                                 command = examples.numpy_random_graph, width = 40,
-                                 height = 2).pack(pady = 5)
+                                          command = examples.numpy_random_graph, width = 40,
+                                          height = 2).pack(pady = 5)
 
     animation_graph_button = tk.Button(examples_win, text = 'Анімація графіка',
-                                 command = examples.animation_graph, width = 40,
-                                 height = 2).pack(pady = 5)
+                                       command = examples.animation_graph, width = 40,
+                                       height = 2).pack(pady = 5)
 
     bar_3d_graph_button = tk.Button(examples_win, text = '3D Гістограма',
-                                 command = examples.bar_3d_graph, width = 40,
-                                 height = 2).pack(pady = 5)
+                                    command = examples.bar_3d_graph, width = 40,
+                                    height = 2).pack(pady = 5)
 
     back_button = tk.Button(examples_win, text = 'Назад',
                             command = close, width = 40,
@@ -246,7 +305,7 @@ def equation_graph_page():
         equation_graph_win.update()
 
     def plotting_graph():
-        plotting.equation_plotting(equation.get('1.0', 'end-1c'), range(int(x_left.get('1.0', 'end-1c')), int(x_right.get('1.0', 'end-1c')) + 1), 
+        plotting.equation_plotting(equation.get('1.0', 'end-1c'), np.arange(int(x_left.get('1.0', 'end-1c')), int(x_right.get('1.0', 'end-1c')) + 1), 
                                    colors_combobox.current(), linestyles_combobox.current(), markers_combobox.current())
 
 
@@ -299,8 +358,8 @@ def equation_graph_page():
 
     # Linestyle
     linestyle_label = tk.Label(equation_graph_win, text = 'Оберіть тип лінії:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 5,
-                                 columnspan = 5)
+                               font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 5,
+                               columnspan = 5)
 
     linestyles = ('Суцільна лінія(за замовчуванням)', 'Пунктирна лінія', 'Довга пунктирна лінія', 'Штрихпунктирна лінія')
 
@@ -310,8 +369,8 @@ def equation_graph_page():
 
     # Marker
     marker_label = tk.Label(equation_graph_win, text = 'Оберіть тип маркерів:', anchor = 'nw',
-                                 font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 7,
-                                 columnspan = 5)
+                            font = ('Arial', 15, 'normal'), pady = 20, padx = 50).grid(column = 0, row = 7,
+                            columnspan = 5)
 
     markers = ('Без маркерів', '•', '·', '●', '▼', '▲', '◀', '▶', '◼', '⬢', '⬣', '✚', '✖', '★', '♦')
 
