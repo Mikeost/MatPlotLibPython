@@ -44,14 +44,14 @@ def bar_graph():
     fig, ax = plt.subplots()
     fruits = ['яблуко', 'апельсин', 'вишня', 'ківі']
     counts = [40, 100, 30, 55]
-    barLabels = ['червоний', 'оранжевий', '_червоний', 'зелений']
+    barlabels = ['червоний', 'оранжевий', '_червоний', 'зелений']
     barColors = ['tab:red', 'tab:orange', 'tab:red', 'tab:green']
 
-    ax.bar(fruits, counts, label = barLabels, color = barColors)
+    ax.bar(fruits, counts, label=barLabels, color=barColors)
 
     ax.set_ylabel('постачання фруктів')
     ax.set_title('Постачаня фруктів за сортом і кольором')
-    ax.legend(title = 'Кольори фруктів')
+    ax.legend(title='Кольори фруктів')
     fig.canvas.manager.set_window_title('Гістограма постачання фруктів')
     plt.show()
 
@@ -61,14 +61,14 @@ def basic_pie_graph():
     explode = (0, 0.1, 0, 0)
 
     fig, ax = plt.subplots()
-    ax.pie(sizes, explode = explode, labels = animals, autopct = '%1.1f%%', 
-           shadow = True, startangle = 90)
+    ax.pie(sizes, explode=explode, labels=animals, autopct='%1.1f%%', 
+           shadow=True, startangle=90)
     ax.axis('equal')
     fig.canvas.manager.set_window_title('Кругова діаграма')
     plt.show()
 
 def pie_lables_graph():
-    fig, ax = plt.subplots(figsize = (6, 3), subplot_kw = dict(aspect = 'equal'))
+    fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect='equal'))
 
     recipe = ['375 g борошна',
               '75 g цукру',
@@ -82,15 +82,15 @@ def pie_lables_graph():
         absolute = int(np.round(pct / 100. * np.sum(allvals)))
         return '{:.1f}%\n({:d} g)'.format(pct, absolute)
 
-    wedges, texts, autotexts = ax.pie(data, autopct = lambda pct: func(pct, data),
-                                      textprops = dict(color = 'w'))
+    wedges, texts, autotexts = ax.pie(data, autopct=lambda pct: func(pct, data),
+                                      textprops=dict(color='w'))
 
     ax.legend(wedges, ingredients,
-              title = 'Інгредієнти',
-              loc = 'center left',
-              bbox_to_anchor = (1, 0, 0.5, 1))
+              title='Інгредієнти',
+              loc='center left',
+              bbox_to_anchor=(1, 0, 0.5, 1))
 
-    plt.setp(autotexts, size = 8, weight = 'bold')
+    plt.setp(autotexts, size=8, weight='bold')
 
     ax.set_title('Пиріг')
     fig.canvas.manager.set_window_title('Кругова діаграма з написами')
@@ -105,8 +105,8 @@ def numpy_random_graph():
     data['b'] = data['a'] + 10 * np.random.randn(50)
     data['d'] = np.abs(data['d']) * 100
 
-    fig, ax = plt.subplots(figsize = (5, 2.7), layout = 'constrained')
-    ax.scatter('a', 'b', c = 'c', s = 'd', data = data)
+    fig, ax = plt.subplots(figsize=(5, 2.7), layout='constrained')
+    ax.scatter('a', 'b', c='c', s='d', data=data)
     ax.set_xlabel('входження послідовності a')
     ax.set_ylabel('входження послідовності b')
     fig.canvas.manager.set_window_title('Numpy rand послідовності')
@@ -114,10 +114,10 @@ def numpy_random_graph():
 
 def animation_graph():
     fig, (axl, axr) = plt.subplots(
-        ncols = 2,
-        sharey = True,
-        figsize = (6, 2),
-        gridspec_kw = dict(width_ratios = [1, 3], wspace = 0)
+        ncols=2,
+        sharey=True,
+        figsize=(6, 2),
+        gridspec_kw=dict(width_ratios=[1, 3], wspace=0)
     )
     axl.set_aspect(1)
     axr.set_box_aspect(1 / 3)
@@ -125,7 +125,7 @@ def animation_graph():
     axr.xaxis.set_ticks([0, np.pi, 2 * np.pi], ['0', r'$\pi$', r'$2\pi$'])
 
     x = np.linspace(0, 2 * np.pi, 50)
-    axl.plot(np.cos(x), np.sin(x), 'k', lw = 0.3)
+    axl.plot(np.cos(x), np.sin(x), 'k', lw=0.3)
     point, = axl.plot(0, 0, 'o')
 
     sine, = axr.plot(x, np.sin(x))
@@ -135,10 +135,10 @@ def animation_graph():
         (0, 0),
         'data',
         'data',
-        axesA = axl,
-        axesB = axr,
-        color = 'C0',
-        ls = 'dotted'
+        axesA=axl,
+        axesB=axr,
+        color='C0',
+        ls='dotted'
     )
     fig.add_artist(con)
 
@@ -154,10 +154,10 @@ def animation_graph():
     ani = animation.FuncAnimation(
         fig,
         animate,
-        interval = 50,
-        blit = False,
-        frames = x,
-        repeat_delay = 100
+        interval=50,
+        blit=False,
+        frames=x,
+        repeat_delay=100
     )
 
     fig.canvas.manager.set_window_title('Анімаційний графік')
@@ -167,7 +167,7 @@ def bar_3d_graph():
     np.random.seed(19680801)
 
     fig = plt.figure()
-    ax = fig.add_subplot(projection = '3d')
+    ax = fig.add_subplot(projection='3d')
 
     colors = ['r', 'g', 'b', 'y']
     yticks = [3, 2, 1, 0]
@@ -178,7 +178,7 @@ def bar_3d_graph():
         cs = [c] * len(xs)
         cs[0] = 'c'
 
-        ax.bar(xs, ys, zs = k, zdir = 'y', color = cs, alpha = 0.8)
+        ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
 
     ax.set_xlabel('X')
     ax.set_ylabel('Y')

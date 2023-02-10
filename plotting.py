@@ -94,7 +94,7 @@ def simple_plotting(data, color_G, linestyle_g, marker_g):
     linestyle_g = linestyle_graph(linestyle_g)
     marker_g = marker_graph(marker_g)
 
-    plt.plot(x_list, y_list, color = color_G, linestyle = linestyle_g, marker = marker_g)
+    plt.plot(x_list, y_list, color=color_G, linestyle=linestyle_g, marker=marker_g)
     plt.grid()
 
     plt.show()
@@ -111,7 +111,7 @@ def equation_plotting(equation, x_range, color_G, linestyle_g, marker_g):
     linestyle_g = linestyle_graph(linestyle_g)
     marker_g = marker_graph(marker_g)
 
-    plt.plot(x, y, color = color_G, linestyle = linestyle_g, marker = marker_g)
+    plt.plot(x, y, color=color_G, linestyle=linestyle_g, marker=marker_g)
     plt.grid()
 
     plt.show()
@@ -152,19 +152,19 @@ def barnsley_fern():
         x.append(dot[0])
         y.append(dot[1])
 
-    plt.plot(x, y, '.', markersize = 2, color = 'g')
+    plt.plot(x, y, '.', markersize=2, color='g')
     plt.title('Папороть Барнслі')
     plt.tight_layout()
     plt.show()
 
 def dragon_curve():
     def f1(x, y):
-        return (1 / sqrt(2)) * np.array([[cos(pi/4), -sin(pi/4)], [sin(pi/4), 
-                cos(pi/4)]]).dot(np.array([x, y]))
+        return (1 / sqrt(2)) * np.array([[cos(pi / 4), -sin(pi / 4)], [sin(pi / 4), 
+                cos(pi / 4)]]).dot(np.array([x, y]))
 
     def f2(x, y):
-        return (1 / sqrt(2)) * np.array([[cos(3*pi/4), -sin(3*pi/4)], [sin(3*pi/4), 
-            cos(3*pi/4)]]).dot(np.array([x, y])) + np.array([1, 0])
+        return (1 / sqrt(2)) * np.array([[cos(3 * pi / 4), -sin(3 * pi / 4)], [sin(3 * pi / 4), 
+            cos(3 * pi / 4)]]).dot(np.array([x, y])) + np.array([1, 0])
 
     n = 50000
     x, y = [0], [0]
@@ -177,7 +177,7 @@ def dragon_curve():
         x.append(dot[0])
         y.append(dot[1])
 
-    plt.plot(x, y, '.', markersize = 1, color = 'r')
+    plt.plot(x, y, '.', markersize=1, color='r')
     plt.title('Крива дракона')
     plt.tight_layout()
     plt.show()
