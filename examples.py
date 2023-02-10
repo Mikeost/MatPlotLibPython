@@ -44,10 +44,10 @@ def bar_graph():
     fig, ax = plt.subplots()
     fruits = ['яблуко', 'апельсин', 'вишня', 'ківі']
     counts = [40, 100, 30, 55]
-    barlabels = ['червоний', 'оранжевий', '_червоний', 'зелений']
-    barColors = ['tab:red', 'tab:orange', 'tab:red', 'tab:green']
+    bar_labels = ['червоний', 'оранжевий', '_червоний', 'зелений']
+    bar_colors = ['tab:red', 'tab:orange', 'tab:red', 'tab:green']
 
-    ax.bar(fruits, counts, label=barLabels, color=barColors)
+    ax.bar(fruits, counts, label=bar_labels, color=bar_colors)
 
     ax.set_ylabel('постачання фруктів')
     ax.set_title('Постачаня фруктів за сортом і кольором')
